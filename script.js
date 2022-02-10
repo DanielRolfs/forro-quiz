@@ -35,13 +35,6 @@ function init(){
             showQuestion();
 }
 
-function updateProgressBar(){
-
-    let percent = (currentQuestion) / questions.length * 100
-    document.getElementById('progressPercent').innerHTML = `${Math.trunc(percent)}%`;
-    document.getElementById('progressPercent').style = `width: ${Math.trunc(percent)}%;`
-}
-
 function showQuestion(){
 
     if(gameIsOver()){
@@ -56,6 +49,13 @@ function gameIsOver(){
     return currentQuestion >= questions.length;
 }
 
+function updateProgressBar(){
+
+    let percent = (currentQuestion) / questions.length * 100
+    document.getElementById('progressPercent').innerHTML = `${Math.trunc(percent)}%`;
+    document.getElementById('progressPercent').style = `width: ${Math.trunc(percent)}%;`
+}
+
 function updateToNextQuestion(){
     document.getElementById('currentQuestion').innerHTML = currentQuestion + 1 ;
 
@@ -66,6 +66,7 @@ function updateToNextQuestion(){
     document.getElementById('2').innerHTML = question['answer_2'];
     document.getElementById('3').innerHTML = question['answer_3'];
 }
+
 
 function answer(selection){
     let question = questions[currentQuestion];
@@ -101,7 +102,7 @@ function resetAnswerButtons() {
     document.getElementById('3').parentNode.classList.remove('bg-success');
 }
 
-/* Nicht optimal gelöst. Nächstes mal besser mit display: none im style arbeiten */
+/* could be better solved with display: none in style! */
 function restartGame(){
     document.getElementById('header-image').src = 'img/header.jpg';
     currentQuestion = 0;
@@ -143,7 +144,7 @@ function restartGame(){
     init();
 }
 
-showEndScreen(){
+function showEndScreen(){
     audioFinished.play();
     document.getElementById('mainArea').innerHTML = '';
     document.getElementById('mainArea').innerHTML += `You did it! :) <br>`;
